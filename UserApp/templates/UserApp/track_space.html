@@ -1,0 +1,9 @@
+{% extends 'UserApp/base.html' %}
+{% block content %}
+    <h1>Track Space</h1>
+    <div>
+    <a href="{% url 'Push' %}" class="btn btn-primary">Push</a>
+    <a href="{% url 'Pull' %}" class="btn btn-primary">Pull</a>
+    <a href="{% url 'Legs' %}" class="btn btn-primary">Legs</a>
+    </div>
+{% endblock %}

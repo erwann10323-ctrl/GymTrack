@@ -1,0 +1,13 @@
+{% extends 'UserApp/base.html' %}
+
+{% block content %}
+    <h1>Reset History</h1>
+    <p>Are you sure you want to reset your workout history?</p>
+    <p>Type 'true' in the space provided, and press the 'Reset' button to restart the app.</p>
+    <form method="post" action="{% url 'Reset' %}">
+        {% csrf_token %}
+        <input type="boolean" name="confirm" value="false" required>
+        <button type="submit" class="btn btn-danger">Reset</button>
+    </form>
+    <a href="{% url 'Settings' %}" class="btn btn-primary">Cancel</a>
+{% endblock %}

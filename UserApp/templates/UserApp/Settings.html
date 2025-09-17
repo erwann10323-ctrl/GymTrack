@@ -1,0 +1,9 @@
+{% extends 'UserApp/base.html' %}
+{% block content %}
+    <h1>Settings</h1>
+    <a href="{% url 'PushEdit' %}" class="btn btn-primary">Push</a>
+    <a href="{% url 'PullEdit' %}" class="btn btn-primary">Pull</a>
+    <a href="{% url 'LegsEdit' %}" class="btn btn-primary">Legs</a>
+    <a href="{% url 'UserChange' %}" class="btn btn-primary">Change User Info</a>
+    <a href="{% url 'Reset' %}" class="btn btn-danger">Reset History</a>
+{% endblock %}

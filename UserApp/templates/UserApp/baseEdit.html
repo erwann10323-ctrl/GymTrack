@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <title>EditPage</title>
+</head>
+<body>
+    <h1>GymTrack</h1>
+    {% block content %}
+
+    {% endblock %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="name" class="form-label">Edit Exercise</label>
+        <input type="text" name="name" class="form-control" placeholder="Enter exercise name" required>
+        <button type="submit" class="btn btn-primary" name='action' value='Add'>Add Exercise</button>
+        <button type="submit" class="btn btn-primary" name='action' value='Delete'>Remove Exercise</button>
+    </form>
+    <form method="post">
+        {% csrf_token %}
+        <label for="day" class="form-label">Change Workout Day</label>
+        <select name="day" class="form-select" required>
+            <option value="Monday" {% if current_day == "Monday" %}selected{% endif %}>Monday</option>
+            <option value="Tuesday" {% if current_day == "Tuesday" %}selected{% endif %}>Tuesday</option>
+            <option value="Wednesday" {% if current_day == "Wednesday" %}selected{% endif %}>Wednesday</option>
+            <option value="Thursday" {% if current_day == "Thursday" %}selected{% endif %}>Thursday</option>
+            <option value="Friday" {% if current_day == "Friday" %}selected{% endif %}>Friday</option>
+            <option value="Saturday" {% if current_day == "Saturday" %}selected{% endif %}>Saturday</option>
+            <option value="Sunday" {% if current_day == "Sunday" %}selected{% endif %}>Sunday</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Change Day</button>
+    <div>
+        <a href="{% url 'home' %}" class="btn btn-danger">Home</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>

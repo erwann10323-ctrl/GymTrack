@@ -1,0 +1,94 @@
+{% extends 'UserApp/base.html' %}
+{% block content %}
+<h1>Statistics</h1>
+<p>Attendance rate: {{ attendance }}</p>
+<div>
+<canvas id="Pushchart" width="400" height = "200"></canvas>
+<canvas id="Pullchart" width="400" height = "200"></canvas>
+<canvas id="Legschart" width="400" height = "200"></canvas>
+</div>
+{{ push_volume|json_script:"pushVolume" }}
+{{ pull_volume|json_script:"pullVolume" }}
+{{ legs_volume|json_script:"legsVolume" }}
+<script>
+    const volumes = JSON.parse(document.getElementById('pushVolume').textContent);
+    // const pushVolume = {{ push_volume|safe }};
+    let Pushctx = document.getElementById('Pushchart').getContext('2d');
+    let Pushchart = new Chart(Pushctx, {
+        type: 'bar',
+        data: {
+            labels: volumes,  // Replace with actual dates or labels
+            datasets: [{
+                label: 'Push Volume',
+                data: volumes,  // Replace with actual volume data
+                backgroundColor: [
+                    'rgba(255, 100, 100, 1)',
+                ],
+            }]
+        },
+        options: {
+            title:{
+                display: true,
+                text: 'Push Volume Over Time'
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    const pullVolumes = JSON.parse(document.getElementById('pullVolume').textContent);
+    let Pullctx = document.getElementById('Pullchart').getContext('2d');
+    let Pullchart = new Chart(Pullctx, {
+        type: 'bar',
+        data: {
+            labels: pullVolumes,  // Replace with actual dates or labels
+            datasets: [{
+                label: 'Pull Volume',
+                data: pullVolumes,  // Replace with actual volume data
+                backgroundColor: [
+                    'rgba(100, 150, 255, 1)',
+                ],
+            }]
+        },
+        options: {
+            title:{
+                display: true,
+                text: 'Pull Volume Over Time'
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    const legsVolumes = JSON.parse(document.getElementById('legsVolume').textContent);
+    let Legsctx = document.getElementById('Legschart').getContext('2d');
+    let Legschart = new Chart(Legsctx, {
+        type: 'bar',
+        data: {
+            labels: legsVolumes,  // Replace with actual dates or labels
+            datasets: [{
+                label: 'Legs Volume',
+                data: legsVolumes,  // Replace with actual volume data
+                backgroundColor: [
+                    'rgba(150, 255, 100, 1)',
+                ],
+            }]
+        },
+        options: {
+            title:{
+                display: true,
+                text: 'Legs Volume Over Time'
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}
