@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+#The templates (HTML files) are linked to a URL extension (e.g home/) and a view (function)
 urlpatterns = [
     path('', views.login, name='login'),
     path('home/', views.home, name='home'),
