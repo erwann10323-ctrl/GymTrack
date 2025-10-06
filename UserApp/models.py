@@ -1,6 +1,8 @@
 from django.db import models
 
-# Create your models here.
+# Models (databases) are created here
+# The collums and their data types are defined within the definition of the model
+
 class UserLogin(models.Model):
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
