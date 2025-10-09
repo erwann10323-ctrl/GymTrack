@@ -1,4 +1,4 @@
-<!--This page extends the base template and uses Chart.js to diaplsy the users progress-->
+<!--This page extends the base tmeplate and uses Chart.js to diaplsy the users progress-->
 {% extends 'UserApp/base.html' %}
 {% block content %}
 <h1>Statistics</h1>
@@ -7,21 +7,24 @@
 <canvas id="Pushchart" width="400" height = "200"></canvas>
 <canvas id="Pullchart" width="400" height = "200"></canvas>
 <canvas id="Legschart" width="400" height = "200"></canvas>
-</div>
+</div>push_volume
 {{ push_volume|json_script:"pushVolume" }}
 {{ pull_volume|json_script:"pullVolume" }}
 {{ legs_volume|json_script:"legsVolume" }}
+{{ push_date|json_script:"pushDates" }}
+{{ pull_date|json_script:"pullDates" }}
+{{ legs_date|json_script:"legsDates" }}
 <script>
-    const volumes = JSON.parse(document.getElementById('pushVolume').textContent);
-    // const pushVolume = {{ push_volume|safe }};
+    const pushdates = JSON.parse(document.getElementById('pushDates').textContent);
+    const pushvolumes = JSON.parse(document.getElementById('pushVolume').textContent);
     let Pushctx = document.getElementById('Pushchart').getContext('2d');
     let Pushchart = new Chart(Pushctx, {
         type: 'bar',
         data: {
-            labels: volumes,  // Replace with actual dates or labels
+            labels: pushdates,
             datasets: [{
                 label: 'Push Volume',
-                data: volumes,  // Replace with actual volume data
+                data: pushvolumes,
                 backgroundColor: [
                     'rgba(255, 100, 100, 1)',
                 ],
@@ -40,14 +43,15 @@
         }
     });
     const pullVolumes = JSON.parse(document.getElementById('pullVolume').textContent);
+    const pulldates = JSON.parse(document.getElementById('pullDates').textContent);
     let Pullctx = document.getElementById('Pullchart').getContext('2d');
     let Pullchart = new Chart(Pullctx, {
         type: 'bar',
         data: {
-            labels: pullVolumes,  // Replace with actual dates or labels
+            labels: pulldates,
             datasets: [{
                 label: 'Pull Volume',
-                data: pullVolumes,  // Replace with actual volume data
+                data: pullVolumes,
                 backgroundColor: [
                     'rgba(100, 150, 255, 1)',
                 ],
@@ -66,14 +70,15 @@
         }
     });
     const legsVolumes = JSON.parse(document.getElementById('legsVolume').textContent);
+    const legsdates = JSON.parse(document.getElementById('legsDates').textContent);
     let Legsctx = document.getElementById('Legschart').getContext('2d');
     let Legschart = new Chart(Legsctx, {
         type: 'bar',
         data: {
-            labels: legsVolumes,  // Replace with actual dates or labels
+            labels: legsdates,
             datasets: [{
                 label: 'Legs Volume',
-                data: legsVolumes,  // Replace with actual volume data
+                data: legsVolumes,
                 backgroundColor: [
                     'rgba(150, 255, 100, 1)',
                 ],
