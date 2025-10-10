@@ -5,7 +5,7 @@ from UserApp.models import Workouts, Attendance
 
 class Command(BaseCommand):
     help = 'Send Reminder Email'
-
+#This fucntion sends an email to the user to either notify them on an upcoming worokout or congratulate them on a completed one, this function will be run every morning using python anywheres task schedueler
     def handle(self, *args, **options):
         now = datetime.now().strftime("%A")
         workout = Workouts.objects.filter(day = now).first()
