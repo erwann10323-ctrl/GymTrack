@@ -3,10 +3,14 @@ from django.db import models
 # Models (databases) are created here
 # The collums and their data types are defined within the definition of the model
 
+# The model's name is defined as UserLogin to represent user credentials
 class UserLogin(models.Model):
+    #The fields of the UserLogin model are defined below:
+    #Username field with a CharField data type and a maximum length of 100 characters
     username = models.CharField(max_length=100)
+    #Password field with a CharField data type and a maximum length of 100 characters
     password = models.CharField(max_length=100)
-
+    #Defining the method used to retreive an value of this model (returns the username)
     def __str__(self):
         return self.username
 
