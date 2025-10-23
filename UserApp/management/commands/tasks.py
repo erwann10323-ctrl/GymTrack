@@ -27,6 +27,7 @@ class Command(BaseCommand):
                 Attendance.objects.create(day=yesterday, attended=False)
                 self.stdout.write(self.style.SUCCESS(f"Created attendance record for {yesterday}"))
             else:
+                Attendance.objects.create(day=yesterday, attended=True)
                 send_mail(
                     'Gym Tracker Reminder',
                     'Good job on your workout yesterday!',
