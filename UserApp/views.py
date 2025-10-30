@@ -143,7 +143,8 @@ def PushEdit(request):
             if action == 'Delete':
                 try:
                     exercise = Exercises.objects.get(name=name, day=day)
-                    exercise.delete()
+                    if exercise.exists():
+                        exercise.delete()
                     #Rendirecting to the home HTML page
                     return render(request, 'UserApp/home.html')
                 #If the exercise written isn't in the database an error message is dispalyed
@@ -188,7 +189,8 @@ def PullEdit(request):
             if action == 'Delete':
                 try:
                     exercise = Exercises.objects.get(name=name, day=day)
-                    exercise.delete()
+                    if exercise.exists():
+                        exercise.delete()
                     #Rendirecting to the home HTML page
                     return render(request, 'UserApp/home.html')
                 except Exercises.DoesNotExist:
@@ -231,7 +233,8 @@ def LegsEdit(request):
             if action == 'Delete':
                 try:
                     exercise = Exercises.objects.get(name=name, day=day)
-                    exercise.delete()
+                    if exercise.exists():
+                        exercise.delete()
                     #Rendirecting to the home HTML page
                     return render(request, 'UserApp/home.html')
                 except Exercises.DoesNotExist:
