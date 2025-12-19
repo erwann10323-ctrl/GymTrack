@@ -15,16 +15,24 @@ class UserLogin(models.Model):
         return self.username
 
 class Exercises(models.Model):
+    #The fields of the Exercises model are defined below:
+    #Name field with a CharField data type and a maximum length of 100 characters
     name = models.CharField(max_length=100)
+    #Day field with a CharField data type and a maximum length of 20 characters
     day = models.CharField(max_length=20)
+    #Repetitions field with a IntergerField data type
     repetitions = models.IntegerField()
+    #Weight field with a FloatField data type
     weight = models.FloatField()
 
     def __str__(self):
         return self.name
 
 class Workouts(models.Model):
+    #The fields of the Workouts model are defined below:
+    #Day field with a CharField data type and a maximum length of 20 characters
     day = models.CharField(max_length=20)
+    #Name field with a CharField data type and a maximum length of 20 characters
     name = models.CharField(max_length=20)
 
     def __str__(self):
@@ -35,8 +43,12 @@ class Attendance(models.Model):
     attended = models.BooleanField(default=False)
 
 class Volume(models.Model):
+    #The fields of the Volume model are defined below:
+    #Volume field with a FloatField data type
     volume = models.FloatField()
+    #Date field with a DateField data type
     date = models.DateField()
+    #Day field with a CharField data type and a maximum length of 20 characters
     day = models.CharField(max_length=20)
 
     def __str__(self):
